@@ -1,4 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+
+import theme from '../src/theme'
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -8,22 +10,29 @@ const GlobalStyle = createGlobalStyle`
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: #3A3A3A;
+  color: ${props => props.theme.black};
 }
  
 a {
-   color: #8933CD;
+   color:${props => props.theme.primary};
    font-weight: bold;
    text-decoration: none;
 }
+
+  a:hover {
+  color: ${props => props.theme.primaryHover};
+  transition: 0.3s;
+}
+
+
 `
 
 function App ({ Component, pageProps }) {
   return (
-    <>
-      <GlobalStyle />
-        <Component {...pageProps} />
-    </>
+    <ThemeProvider theme = {theme}>
+      <GlobalStyle theme = {theme}/>
+        <Component {...pageProps} theme = {theme} />
+    </ThemeProvider>
   )
 }
 
