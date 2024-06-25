@@ -25,21 +25,24 @@ const Text = styled.p`
 `
 
 
-function LoginPage () {
+function SignUpPage () {
   return (
     <div>
       <ImageWithSpace>
         <H1># Social Dev</H1>
         <H4>Tudo que acontece no mundo dev, está aqui</H4>
         <FormContainer>
-          <H2>Entre em sua conta</H2>
+          <H2>Crie sua conta</H2>
           <Form>
+              <Input label = "Nome" />
+              <Input label = "Sobrenome" />
+              <Input label = "Usuário" />
               <Input label = "Email ou usuário" type="email" />
               <Input label = "Senha" type="password" />
               <Button>Entrar</Button>
           </Form>
           <Text>
-            Não possui uma conta? <Link href="/SignUp">Faça seu cadastro</Link>
+            Já possui uma conta? <Link href="/Login">Faça seu login</Link>
           </Text>
         </FormContainer>
       </ImageWithSpace>
@@ -47,4 +50,4 @@ function LoginPage () {
   )
 }
 
-export default LoginPage
+export default SignUpPage
