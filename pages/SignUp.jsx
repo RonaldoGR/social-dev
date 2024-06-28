@@ -29,7 +29,7 @@ const Text = styled.p`
 
 
 function SignUpPage () {
-  const {register, handleSubmit, formState: {errors}} = useForm({
+  const {control, handleSubmit, formState: {errors}} = useForm({
     resolver: joiResolver(signupSchema)
   })
 
@@ -47,11 +47,11 @@ function SignUpPage () {
         <FormContainer>
           <H2>Crie sua conta</H2>
           <Form onSubmit={handleSubmit(handleForm)}>
-              <Input label = "Nome" {...register('FirstName')} error ={errors.FirstName} />
-              <Input label = "Sobrenome" {...register('LastName')} error = {errors.LastName}/>
-              <Input label = "Usuário" {...register('User')} error = {errors.User}/>
-              <Input label = "Email" type="email"  {...register('Email')} error = {errors.Email}/>
-              <Input label = "Senha" type="password" {...register('Password')} error = {errors.Password}/>
+              <Input label = "Nome" name = "FirstName" control={control}/>
+              <Input label = "Sobrenome"  name = "LastName" control={control}/>
+              <Input label = "Usuário" name = "User" control={control}/>
+              <Input label = "Email" type="email"  name = "Email" control={control}/>
+              <Input label = "Senha" type="password" name = "Password" control={control}/>
               <Button type='submit' disabled = {Object.keys(errors).length > 0 }>Cadastrar</Button>
           </Form>
           <Text>
