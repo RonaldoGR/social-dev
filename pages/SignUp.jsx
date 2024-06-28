@@ -37,7 +37,8 @@ function SignUpPage () {
     console.log(data)
   }
 
-  console.log(errors)
+
+
   return (
     <div>
       <ImageWithSpace>
@@ -46,12 +47,12 @@ function SignUpPage () {
         <FormContainer>
           <H2>Crie sua conta</H2>
           <Form onSubmit={handleSubmit(handleForm)}>
-              <Input label = "Nome" {...register('FirstName')}/>
-              <Input label = "Sobrenome" {...register('LastName')}/>
-              <Input label = "Usuário" {...register('User')}/>
-              <Input label = "Email" type="email"  {...register('Email')}/>
-              <Input label = "Senha" type="password" {...register('Password')}/>
-              <Button type='submit'>Entrar</Button>
+              <Input label = "Nome" {...register('FirstName')} error ={errors.FirstName} />
+              <Input label = "Sobrenome" {...register('LastName')} error = {errors.LastName}/>
+              <Input label = "Usuário" {...register('User')} error = {errors.User}/>
+              <Input label = "Email" type="email"  {...register('Email')} error = {errors.Email}/>
+              <Input label = "Senha" type="password" {...register('Password')} error = {errors.Password}/>
+              <Button type='submit' disabled = {Object.keys(errors).length > 0 }>Cadastrar</Button>
           </Form>
           <Text>
             Já possui uma conta? <Link href="/Login">Faça seu login</Link>
