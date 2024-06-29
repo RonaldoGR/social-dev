@@ -2,7 +2,7 @@ import Joi from 'joi'
 import {withIronSessionApiRoute} from 'iron-session/next'
 import { IronConfig } from '../../../lib/middlewares/ironSession' 
 
-import createHandler from '../../../lib/middlewares/nextconnect'
+import createHandler from '../../../lib/middlewares/nextConnect'
 import validate from '../../../lib/middlewares/validation'
 import { signupUser } from "../../../modules/user/user.service"
 import { signupSchema } from '../../../modules/user/user.schema'
@@ -25,9 +25,10 @@ const signup = createHandler()
       if(err.code == 11000){
         return res.status(400).send({
           code: 11000,
-          duplicatedKey: Object.keys(err.keyPattern)[0]
+          duplicatedKey: Object.keys(err.keyPattern)
         })
       }
+      console.error(err)
       throw err
     }
   })

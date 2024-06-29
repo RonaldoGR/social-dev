@@ -1,7 +1,7 @@
 import Joi from 'joi'
 import {withIronSessionApiRoute} from 'iron-session/next'
 
-import createHandler from '../../../lib/middlewares/nextconnect'
+import createHandler from '../../../lib/middlewares/nextConnect'
 import validate from '../../../lib/middlewares/validation'
 import { login } from "../../../modules/user/user.service"
 import { IronConfig } from '../../../lib/middlewares/ironSession' 
