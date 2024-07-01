@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { withIronSessionSsr } from 'iron-session/next'
 import { IronConfig } from '../lib/middlewares/ironSession'
 import axios from 'axios'
+import useSWR from 'swr'
 
 import NavBar from "../src/components/layout/NavBar"
 import Container from '../src/components/layout/Container'
@@ -38,20 +39,11 @@ const PostContainer = styled.div`
   margin-top: 20px;
 
 `
+const fetcher = url => axios.get(url).then(res => res.data)
 
 function HomePage ({user}) {
-  const [data,setData] = useState([])
 
-  const handlePosts = async () => {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/post`)
-    setData(response.data)
-  }
-
-  useEffect(() => {
-    handlePosts()
-  }, [] )
-
-
+  const {data} = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, fetcher)
   return (
   <>
     <NavBar />
@@ -66,7 +58,7 @@ function HomePage ({user}) {
         </RefreshPostsContainer>
         <PostContainer>
           {
-            data.map(post =>
+            data?.map(post =>
               <Post 
               key = {post._id}
               text = {post.text}
